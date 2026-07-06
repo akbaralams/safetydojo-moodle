@@ -1,0 +1,19 @@
+# Moodle configuration
+config.php
+
+# Composer
+vendor/
+
+# Node
+node_modules/
+
+# Cache
+.cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

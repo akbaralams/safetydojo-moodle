@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<libraries>
+  <library>
+    <location>amd/src/jquery.dataTables.js</location>
+    <name>jQuery Datatables</name>
+    <license>MIT</license>
+    <version>1.10.13</version>
+    <licenseversion></licenseversion>
+  </library>
+</libraries>
