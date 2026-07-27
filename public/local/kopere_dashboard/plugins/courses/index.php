@@ -52,6 +52,9 @@ $templatecontext = [
     "hasresults" => !empty($results),
     "emptytitle" => get_string("empty_query_title", "koperedashboard_courses"),
     "noresults" => get_string("no_results", "koperedashboard_courses"),
+    "cancreate" => has_capability("koperedashboard/courses:create", $context),
+    "createurl" => new moodle_url("/local/kopere_dashboard/plugins/courses/create.php"),
+    "addcoursetext" => get_string("action_add_course", "koperedashboard_courses"),
 ];
 
 foreach ($results as $course) {

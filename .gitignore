@@ -1,8 +1,8 @@
 # Moodle configuration
-config.php
+/config.php
 
 # Composer
-vendor/
+/vendor/
 
 # Node
 node_modules/

@@ -64,6 +64,11 @@ $templatecontext = [
             "type" => "primary",
         ],
         [
+            "title" => get_string("action_manage_content", "koperedashboard_courses"),
+            "url" => new moodle_url("/course/view.php", ["id" => $course->id, "edit" => 1, "sesskey" => sesskey()]),
+            "type" => "secondary",
+        ],
+        [
             "title" => get_string("action_participants", "koperedashboard_courses"),
             "url" => new moodle_url("/user/", ["id" => $course->id]),
             "type" => "secondary",
@@ -75,7 +80,7 @@ $templatecontext = [
         ],
         [
             "title" => get_string("action_edit_course", "koperedashboard_courses"),
-            "url" => new moodle_url("/course/edit.php", ["id" => $course->id]),
+            "url" => new moodle_url("/local/kopere_dashboard/plugins/courses/edit.php", ["id" => $course->id]),
             "type" => "secondary",
         ],
         [

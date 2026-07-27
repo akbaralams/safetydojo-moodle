@@ -24,8 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$string['about_description_text'] = 'Kopere Dashboard memusatkan rutinitas akademik, keuangan, operasional, dan administratif dalam satu antarmuka di dalam Moodle.';
-$string['about_description_title'] = 'Tentang plugin';
+$string['about_description_text'] = 'Safety Dojo Ajinomoto merupakan pusat pembelajaran keselamatan kerja yang dirancang untuk meningkatkan kesadaran, pengetahuan, dan budaya K3 (Keselamatan dan Kesehatan Kerja) melalui pengalaman belajar yang interaktif. Peserta dapat mengenali berbagai potensi bahaya, memahami praktik kerja yang aman, serta membangun kebiasaan bekerja secara disiplin demi menciptakan lingkungan kerja yang aman, sehat, dan produktif.';
+$string['about_description_title'] = 'Tentang';
 $string['about_github_label'] = 'GitHub';
 $string['about_support_text'] = 'Untuk dokumentasi, kode sumber, atau pengembangan proyek, gunakan tautan di bawah ini.';
 $string['about_support_title'] = 'Tautan berguna';
@@ -121,7 +121,7 @@ $string['permissions_users_desc'] = 'Gunakan pemilih untuk menambahkan atau meng
 $string['permissions_users_title'] = 'Tetapkan pengguna';
 $string['plugin_external'] = 'Plugin eksternal';
 $string['pluginmenu_hidden'] = 'Tersembunyi di menu';
-$string['pluginname'] = 'Kopere Dashboard';
+$string['pluginname'] = 'Dashboard';
 $string['pluginstatus_activate'] = 'Aktifkan';
 $string['pluginstatus_active'] = 'Aktif';
 $string['pluginstatus_deactivate'] = 'Nonaktifkan';
@@ -160,4 +160,4 @@ $string['subplugintype_koperedashboard'] = 'Plugin';
 $string['subplugintype_koperedashboard_plural'] = 'Plugin';
 $string['visible'] = 'Terlihat';
 $string['welcome_desc'] = 'Hub lengkap untuk pengelolaan akademik dan pedagogis di dasbor Moodle Anda.';
-$string['welcome_title'] = 'Selamat datang di Kopere Dashboard!';
+$string['welcome_title'] = 'Selamat datang di Dashboard!';

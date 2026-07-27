@@ -1,0 +1,28 @@
+++ This page did not call $PAGE->set_url(...). Using  ++
+* line 704 of \public\lib\pagelib.php: call to debugging()
+* line 985 of \public\lib\pagelib.php: call to moodle_page->magic_get_url()
+* line 51 of \public\local\kopere_dashboard\lib.php: call to moodle_page->__get()
+* line 478 of \public\lib\classes\navigation\global_navigation.php: call to local_kopere_dashboard_extend_navigation()
+* line 443 of \public\lib\classes\navigation\global_navigation.php: call to core\navigation\global_navigation->load_local_plugin_navigation()
+* line 2255 of \public\lib\classes\navigation\global_navigation.php: call to core\navigation\global_navigation->initialise()
+* line 47 of \public\local\kopere_dashboard\lib.php: call to core\navigation\global_navigation->find()
+* line 478 of \public\lib\classes\navigation\global_navigation.php: call to local_kopere_dashboard_extend_navigation()
+* line 443 of \public\lib\classes\navigation\global_navigation.php: call to core\navigation\global_navigation->load_local_plugin_navigation()
+* line 23 of \test_navbug.php: call to core\navigation\global_navigation->initialise()
+* line 47 of \test_navbug.php: call to probe()
+++ Navigation node intersect: Adding a node that already exists kopere_dashboard_menu ++
+* line 89 of \public\lib\classes\navigation\navigation_node_collection.php: call to debugging()
+* line 422 of \public\lib\classes\navigation\navigation_node.php: call to core\navigation\navigation_node_collection->add()
+* line 398 of \public\lib\classes\navigation\navigation_node.php: call to core\navigation\navigation_node->add_node()
+* line 62 of \public\local\kopere_dashboard\lib.php: call to core\navigation\navigation_node->add()
+* line 478 of \public\lib\classes\navigation\global_navigation.php: call to local_kopere_dashboard_extend_navigation()
+* line 443 of \public\lib\classes\navigation\global_navigation.php: call to core\navigation\global_navigation->load_local_plugin_navigation()
+* line 23 of \test_navbug.php: call to core\navigation\global_navigation->initialise()
+* line 47 of \test_navbug.php: call to probe()
+!!! Pengecualian - core\navigation\output\primary::export_for_template(): Argument #1 ($output) must be of type ?renderer_base, core\output\bootstrap_renderer given, called in C:\laragon\www\Moodle\safetydojo-moodle\test_navbug.php on line 28 !!!
+!! 
+Error code: generalexceptionmessage !!
+!! Stack trace: * line 54 of \public\lib\classes\navigation\output\primary.php: TypeError thrown
+* line 28 of \test_navbug.php: call to core\navigation\output\primary-&gt;export_for_template()
+* line 47 of \test_navbug.php: call to probe()
+ !!

@@ -1,0 +1,64 @@
+/* Restyles Moodle's native course_edit_form (course/edit_form.php) so it visually matches
+   the Kopere Dashboard card/input design when rendered inside the courses subplugin. */
+
+.kopere_dashboard-courseform fieldset.collapsible {
+    background: #fff;
+    border: 1px solid #d8dde6;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(31, 52, 97, .05);
+    margin-bottom: 16px;
+    padding: 0 18px 16px;
+}
+
+.kopere_dashboard-courseform fieldset.collapsible > legend,
+.kopere_dashboard-courseform fieldset.collapsible > .fheader {
+    color: #2c3650;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px 0;
+    width: 100%;
+}
+
+.kopere_dashboard-courseform .fitem {
+    margin-bottom: 14px;
+}
+
+.kopere_dashboard-courseform .fitemtitle,
+.kopere_dashboard-courseform legend.col-form-label,
+.kopere_dashboard-courseform label {
+    color: #44506a;
+    font-weight: 600;
+}
+
+.kopere_dashboard-courseform .form-control,
+.kopere_dashboard-courseform select,
+.kopere_dashboard-courseform input[type="text"],
+.kopere_dashboard-courseform input[type="number"],
+.kopere_dashboard-courseform input[type="search"],
+.kopere_dashboard-courseform textarea {
+    border: 1px solid #c6ceda;
+    border-radius: 8px;
+    min-height: 42px;
+}
+
+.kopere_dashboard-courseform .form-control:focus,
+.kopere_dashboard-courseform select:focus,
+.kopere_dashboard-courseform textarea:focus {
+    border-color: #88afea;
+    box-shadow: 0 0 0 3px rgba(63, 126, 232, .12);
+}
+
+.kopere_dashboard-courseform .btn {
+    border-radius: 8px;
+}
+
+.kopere_dashboard-courseform .btn-primary {
+    background: var(--bs-primary, #3f7ee8);
+    border-color: var(--bs-primary, #3f7ee8);
+}
+
+.kopere_dashboard-courseform-wrap [data-region="drawer"],
+.kopere_dashboard-courseform .sticky-footer {
+    background: #f8fbff;
+    border-radius: 0 0 12px 12px;
+}

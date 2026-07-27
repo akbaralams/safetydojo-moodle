@@ -51,8 +51,34 @@ class layout {
 
         $titles = explode($PAGE::TITLE_SEPARATOR, $PAGE->title);
 
+        [$layoutdata, $activeparent, $activechild] = self::build_sidebar_context($context);
+
+        $layoutdata["kopere_dashboard-title"] = $titles[0];
+        $layoutdata["content-class"] = $classname;
+        $layoutdata["content"] = $content;
+        $layoutdata["breadcrumb"] = self::build_breadcrumb($titles[0], $addpage, $activeparent, $activechild);
+
+        $PAGE->requires->js_call_amd("local_kopere_dashboard/sidebar", "init");
+
+        echo $OUTPUT->header();
+        echo $OUTPUT->render_from_template("local_kopere_dashboard/page", $layoutdata);
+        echo $OUTPUT->footer();
+        die;
+    }
+
+    /**
+     * Build the sidebar/brand/menu template context shared by Kopere Dashboard's own pages
+     * and by the "kopere" theme page layout used to wrap native Moodle pages (course, participants,
+     * gradebook, etc.) in the same chrome.
+     *
+     * @param context $context
+     * @return array{0: array, 1: array|null, 2: array|null} [sidebar template context, active parent item, active child item]
+     * @throws \coding_exception
+     * @throws \core\exception\moodle_exception
+     * @throws \moodle_exception
+     */
+    public static function build_sidebar_context(context $context): array {
         $layoutdata = [
-            "kopere_dashboard-title" => $titles[0],
             "brand" => get_string("pluginname", "local_kopere_dashboard"),
             "brandurl" => new moodle_url("/local/kopere_dashboard/"),
             "primaryitems" => [],
@@ -164,17 +190,8 @@ class layout {
         }
 
         $layoutdata["hasfooteritems"] = !empty($layoutdata["footeritems"]);
-        $layoutdata["breadcrumb"] = self::build_breadcrumb($titles[0], $addpage, $activeparent, $activechild);
 
-        $layoutdata["content-class"] = $classname;
-        $layoutdata["content"] = $content;
-
-        $PAGE->requires->js_call_amd("local_kopere_dashboard/sidebar", "init");
-
-        echo $OUTPUT->header();
-        echo $OUTPUT->render_from_template("local_kopere_dashboard/page", $layoutdata);
-        echo $OUTPUT->footer();
-        die;
+        return [$layoutdata, $activeparent, $activechild];
     }
 
     /**

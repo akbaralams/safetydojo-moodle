@@ -42,6 +42,10 @@ class capabilities_provider {
                 "name" => get_string("cap_manage", "koperedashboard_courses"),
                 "description" => get_string("cap_manage_desc", "koperedashboard_courses"),
             ],
+            "koperedashboard/courses:create" => [
+                "name" => get_string("cap_create", "koperedashboard_courses"),
+                "description" => get_string("cap_create_desc", "koperedashboard_courses"),
+            ],
         ];
     }
 }

@@ -1,0 +1,141 @@
+{{!
+    This file is part of Moodle - https://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template koperedashboard_allcourses/index
+
+    Example context (json):
+    {
+        "q": "",
+        "intro": "Courses below are open for enrolment.",
+        "placeholder": "Course name, short name or ID number",
+        "hascourses": true,
+        "emptymessage": "No course matches your search.",
+        "formurl": "https://moodle.example.com/local/kopere_dashboard/plugins/allcourses/",
+        "enrolurl": "https://moodle.example.com/local/kopere_dashboard/plugins/allcourses/enrol.php",
+        "sesskey": "abc123",
+        "courses": [
+            {
+                "id": 12,
+                "imageurl": "https://moodle.example.com/pluginfile.php/123/course/overviewfiles/cover.jpg",
+                "fullname": "Fire safety",
+                "shortname": "FS",
+                "category": "Ajinomoto Module",
+                "summary": "Basic fire safety training.",
+                "startdate": "1 July 2026",
+                "canenrol": true,
+                "needspassword": false,
+                "reason": "",
+                "enrolkeyurl": "https://moodle.example.com/enrol/index.php?id=12",
+                "courseurl": "https://moodle.example.com/course/view.php?id=12"
+            }
+        ]
+    }
+}}
+
+<div class="kopere_dashboard-card">
+    <p class="text-muted">{{{intro}}}</p>
+
+    <form method="get" action="{{{formurl}}}" class="kopere_dashboard-allcourses-search">
+        <label class="form-label" for="kopere_dashboard-allcourses-q">
+            {{#str}}search_label, koperedashboard_allcourses{{/str}}
+        </label>
+        <div class="input-group">
+            <input type="text"
+                   id="kopere_dashboard-allcourses-q"
+                   class="form-control"
+                   name="q"
+                   value="{{{q}}}"
+                   placeholder="{{{placeholder}}}"
+                   autocomplete="off">
+            <button type="submit" class="btn btn-primary">{{#str}}search, core{{/str}}</button>
+        </div>
+    </form>
+</div>
+
+<div class="kopere_dashboard-card" style="margin-top: 16px;">
+    {{#hascourses}}
+        <table class="table table-striped kopere_dashboard-table">
+            <thead>
+            <tr>
+                <th style="width: 96px;"><span class="visually-hidden">
+                    {{#str}}col_image, koperedashboard_allcourses{{/str}}</span></th>
+                <th>{{#str}}col_fullname, koperedashboard_allcourses{{/str}}</th>
+                <th style="width: 130px;">{{#str}}col_shortname, koperedashboard_allcourses{{/str}}</th>
+                <th style="width: 180px;">{{#str}}col_category, koperedashboard_allcourses{{/str}}</th>
+                <th style="width: 140px;">{{#str}}col_startdate, koperedashboard_allcourses{{/str}}</th>
+                <th style="width: 190px;">{{#str}}col_actions, koperedashboard_allcourses{{/str}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#courses}}
+                <tr>
+                    <td>
+                        <img src="{{{imageurl}}}"
+                             alt=""
+                             class="rounded"
+                             style="width: 80px; height: 54px; object-fit: cover; display: block;">
+                    </td>
+                    <td>
+                        <strong>{{{fullname}}}</strong>
+                        {{#enrolled}}
+                            <span class="badge text-bg-secondary ms-1">
+                                {{#str}}status_enrolled, koperedashboard_allcourses{{/str}}</span>
+                        {{/enrolled}}
+                        <div class="text-muted small">{{{summary}}}</div>
+                    </td>
+                    <td>{{{shortname}}}</td>
+                    <td>{{{category}}}</td>
+                    <td>{{{startdate}}}</td>
+                    <td>
+                        {{#enrolled}}
+                            <a class="btn btn-secondary btn-sm" href="{{{courseurl}}}">
+                                {{#str}}action_open, koperedashboard_allcourses{{/str}}</a>
+                        {{/enrolled}}
+                        {{^enrolled}}
+                            {{#canenrol}}
+                                {{#needspassword}}
+                                    <a class="btn btn-primary btn-sm" href="{{{enrolkeyurl}}}">
+                                        {{#str}}action_enrol, koperedashboard_allcourses{{/str}}</a>
+                                    <div class="text-muted small mt-1">
+                                        {{#str}}enrol_needspassword, koperedashboard_allcourses{{/str}}
+                                    </div>
+                                {{/needspassword}}
+                                {{^needspassword}}
+                                    <form method="post" action="{{{enrolurl}}}">
+                                        <input type="hidden" name="sesskey" value="{{{sesskey}}}">
+                                        <input type="hidden" name="courseid" value="{{{id}}}">
+                                        <button type="submit" class="btn btn-primary btn-sm">
+                                            {{#str}}action_enrol, koperedashboard_allcourses{{/str}}
+                                        </button>
+                                    </form>
+                                {{/needspassword}}
+                            {{/canenrol}}
+                            {{^canenrol}}
+                                <span class="text-muted small">{{{reason}}}</span>
+                            {{/canenrol}}
+                        {{/enrolled}}
+                    </td>
+                </tr>
+            {{/courses}}
+            </tbody>
+        </table>
+    {{/hascourses}}
+
+    {{^hascourses}}
+        <div class="alert alert-info" style="margin-bottom: 0;">{{{emptymessage}}}</div>
+    {{/hascourses}}
+</div>
