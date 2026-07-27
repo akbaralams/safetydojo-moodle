@@ -1,0 +1,7 @@
+
+++ This page did not call $PAGE->set_url(...). Using  ++
+* line 985 of \public\lib\pagelib.php: call to moodle_page->magic_get_url()
+!!! Kesalahan pengkodean terdeteksi, itu harus diperbaiki oleh programmer: out_as_local_url called on a non-local URL !!!
+!! Stack trace: * line 870 of \public\lib\classes\url.php: core\exception\coding_exception thrown
+* line 1021 of \public\user\lib.php: call to core\url-&gt;out_as_local_url()
+

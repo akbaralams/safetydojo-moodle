@@ -30,4 +30,9 @@ $capabilities = [
         "contextlevel" => CONTEXT_SYSTEM,
         "archetypes" => [],
     ],
+    "koperedashboard/courses:create" => [
+        "captype" => "write",
+        "contextlevel" => CONTEXT_SYSTEM,
+        "archetypes" => [],
+    ],
 ];

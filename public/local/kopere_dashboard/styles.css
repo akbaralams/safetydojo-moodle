@@ -237,10 +237,8 @@
 .local-kopere_dashboard .kopere_dashboard-card-navsummary,
 .path-local-kopere_dashboard .kopere_dashboard-card-navsummary {
   padding-right: 16px;
-}
-.local-kopere_dashboard .kopere_dashboard-card-navsummary.is-active + .kopere_dashboard-card-navchildren,
-.path-local-kopere_dashboard .kopere_dashboard-card-navsummary.is-active + .kopere_dashboard-card-navchildren {
-  display: block;
+  cursor: pointer;
+  user-select: none;
 }
 .local-kopere_dashboard .kopere_dashboard-card-navcaret,
 .path-local-kopere_dashboard .kopere_dashboard-card-navcaret {
@@ -251,16 +249,25 @@
   border-bottom: 2px solid currentColor;
   transform: rotate(45deg);
   opacity: 0.55;
+  transition: transform 0.18s ease;
+}
+.local-kopere_dashboard .kopere_dashboard-card-navsummary.is-expanded .kopere_dashboard-card-navcaret,
+.path-local-kopere_dashboard .kopere_dashboard-card-navsummary.is-expanded .kopere_dashboard-card-navcaret {
+  transform: rotate(135deg);
 }
 .local-kopere_dashboard .kopere_dashboard-card-navchildren,
 .path-local-kopere_dashboard .kopere_dashboard-card-navchildren {
   background: #fafbfd;
   border-bottom: 1px solid #edf1f6;
-  display: none;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.24s ease;
 }
 .local-kopere_dashboard .kopere_dashboard-card-navchildren.is-expanded,
 .path-local-kopere_dashboard .kopere_dashboard-card-navchildren.is-expanded {
-  display: block;
+  max-height: 1500px;
+  opacity: 1;
 }
 .local-kopere_dashboard .kopere_dashboard-card-navitem.is-active > .kopere_dashboard-card-navicon,
 .local-kopere_dashboard .kopere_dashboard-card-navsummary.is-active > .kopere_dashboard-card-navicon,

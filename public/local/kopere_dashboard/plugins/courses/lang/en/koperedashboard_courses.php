@@ -22,12 +22,16 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+$string['action_add_course'] = 'Add course';
 $string['action_edit_course'] = 'Edit settings';
 $string['action_gradebook'] = 'Gradebook';
 $string['action_logs'] = 'Logs';
+$string['action_manage_content'] = 'Manage content';
 $string['action_open'] = 'Open';
 $string['action_open_course'] = 'Open course';
 $string['action_participants'] = 'Participants';
+$string['cap_create'] = 'Create courses';
+$string['cap_create_desc'] = 'Allows creating new courses from the course hub.';
 $string['cap_manage'] = 'Manage course hub';
 $string['cap_manage_desc'] = 'Allows access to management actions in the course hub.';
 $string['cap_view'] = 'View courses';
@@ -57,6 +61,7 @@ $string['col_subject'] = 'Subject';
 $string['col_user'] = 'User';
 $string['col_visible'] = 'Visible';
 $string['courses:manage'] = 'Manage courses';
+$string['edit_title'] = 'Edit course: {$a}';
 $string['empty_query_title'] = 'Recently modified courses';
 $string['label_enddate'] = 'End';
 $string['label_idnumber'] = 'ID number';
@@ -70,6 +75,7 @@ $string['metric_contracts'] = 'Contracts';
 $string['metric_enrolled'] = 'Enrolled users';
 $string['metric_plans'] = 'Plans';
 $string['metric_requests_open'] = 'Open requests';
+$string['new_title'] = 'Add course';
 $string['no_participants_cap'] = 'You do not have permission to view participants in this course.';
 $string['no_results'] = 'No courses found.';
 $string['page_title'] = 'Course search';
@@ -89,6 +95,8 @@ $string['section_overview'] = 'Overview';
 $string['section_participants'] = 'Participants (sample)';
 $string['section_plans'] = 'Plans';
 $string['section_requests'] = 'Requests';
+$string['success_course_created'] = 'Course "{$a}" was created successfully.';
+$string['success_course_updated'] = 'Course "{$a}" was updated successfully.';
 $string['view_title'] = 'Course: {$a}';
 $string['visible_no'] = 'Hidden';
 $string['visible_yes'] = 'Visible';

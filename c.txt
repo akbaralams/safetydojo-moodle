@@ -1,0 +1,3 @@
+URL: /local/kopere_dashboard/plugins/courses/?q=
+custommenuitems runtime: [Dashboard|http://safety.test/local/kopere_dashboard/plugins/courses/?q]
+navbar: [Dashboard] (jumlah: 1)

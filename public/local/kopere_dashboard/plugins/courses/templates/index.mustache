@@ -51,6 +51,11 @@
 }}
 
 <div class="kopere_dashboard-card">
+    {{#cancreate}}
+        <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
+            <a class="btn btn-primary" href="{{{createurl}}}">+ {{{addcoursetext}}}</a>
+        </div>
+    {{/cancreate}}
     <div class="kopere_dashboard-student-grid">
         <div class="form-group" style="position: relative;">
             <label for="kopere_dashboard-courses-search">{{#str}}search_label, koperedashboard_courses{{/str}}</label>

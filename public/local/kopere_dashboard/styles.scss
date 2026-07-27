@@ -156,11 +156,8 @@
     }
     .kopere_dashboard-card-navsummary {
         padding-right: 16px;
-        &.is-active {
-            + .kopere_dashboard-card-navchildren {
-                display: block;
-            }
-        }
+        cursor: pointer;
+        user-select: none;
     }
     .kopere_dashboard-card-navcaret {
         margin-left: auto;
@@ -170,13 +167,22 @@
         border-bottom: 2px solid currentColor;
         transform: rotate(45deg);
         opacity: .55;
+        transition: transform .18s ease;
+    }
+    .kopere_dashboard-card-navsummary.is-expanded .kopere_dashboard-card-navcaret {
+        transform: rotate(135deg);
     }
     .kopere_dashboard-card-navchildren {
         background: #fafbfd;
         border-bottom: 1px solid #edf1f6;
-        display: none;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition: max-height .3s cubic-bezier(.4, 0, .2, 1), opacity .24s ease;
         &.is-expanded {
-            display: block;
+            // Fallback for when JS has not set an explicit pixel height yet.
+            max-height: 1500px;
+            opacity: 1;
         }
     }
     .kopere_dashboard-card-navitem.is-active,

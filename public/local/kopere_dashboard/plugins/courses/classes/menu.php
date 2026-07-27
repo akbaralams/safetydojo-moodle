@@ -48,6 +48,7 @@ class menu {
         global $PAGE;
 
         $path = "/local/kopere_dashboard/plugins/courses/view.php";
+        $createpath = "/local/kopere_dashboard/plugins/courses/create.php";
         $children = [];
         if ($PAGE->url->get_path() == $path) {
             $id = optional_param("id", null, PARAM_INT);
@@ -63,6 +64,14 @@ class menu {
                     ];
                 }
             }
+        } else if ($PAGE->url->get_path() == $createpath) {
+            $children = [
+                [
+                    "title" => get_string("action_add_course", "koperedashboard_courses"),
+                    "url" => new moodle_url($createpath),
+                    "icon" => "add_circle",
+                ],
+            ];
         }
 
         return [
