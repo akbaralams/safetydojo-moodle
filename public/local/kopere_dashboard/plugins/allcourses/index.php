@@ -42,6 +42,14 @@ $PAGE->set_title(get_string("page_title", "koperedashboard_allcourses"));
 
 $courses = catalog_service::get_catalogue_courses($USER->id, $q, 200);
 
+$enrolledcourseids = [];
+foreach ($courses as $course) {
+    if (!empty($course->enrolled)) {
+        $enrolledcourseids[] = (int) $course->id;
+    }
+}
+$certificateurls = catalog_service::get_certificate_urls($USER->id, $enrolledcourseids);
+
 $rows = [];
 foreach ($courses as $course) {
     $enrolled = !empty($course->enrolled);
@@ -89,6 +97,8 @@ foreach ($courses as $course) {
         // which knows how to prompt for and validate the key.
         "enrolkeyurl" => (new moodle_url("/enrol/index.php", ["id" => $course->id]))->out(false),
         "courseurl" => (new moodle_url("/course/view.php", ["id" => $course->id]))->out(false),
+        "hascertificate" => isset($certificateurls[$course->id]),
+        "certificateurl" => $certificateurls[$course->id] ?? "",
     ];
 }
 

@@ -175,4 +175,59 @@ class catalog_service {
 
         return ($plugin instanceof enrol_self_plugin) ? $plugin : null;
     }
+
+    /**
+     * Certificate view URLs for courses the user has completed, keyed by course id.
+     *
+     * Only courses core marks as complete for the user are considered, and only when they
+     * contain a customcert activity the user is actually allowed to see.
+     *
+     * @param int $userid
+     * @param array<int,int> $courseids
+     * @return array<int,string> courseid => mod_customcert view.php URL
+     * @throws dml_exception
+     */
+    public static function get_certificate_urls(int $userid, array $courseids): array {
+        global $DB;
+
+        if (empty($courseids)) {
+            return [];
+        }
+
+        [$insql, $inparams] = $DB->get_in_or_equal($courseids, SQL_PARAMS_NAMED, "courseid");
+        $completedcourseids = $DB->get_fieldset_select(
+            "course_completions",
+            "course",
+            "userid = :userid AND course {$insql} AND timecompleted > 0",
+            $inparams + ["userid" => $userid]
+        );
+
+        $urls = [];
+        foreach ($completedcourseids as $courseid) {
+            $cmid = self::get_first_certificate_cmid($userid, (int) $courseid);
+            if ($cmid !== null) {
+                $urls[(int) $courseid] = (new \moodle_url("/mod/customcert/view.php", ["id" => $cmid]))->out(false);
+            }
+        }
+
+        return $urls;
+    }
+
+    /**
+     * The course module id of the first customcert activity the user can see in a course.
+     *
+     * @param int $userid
+     * @param int $courseid
+     * @return int|null
+     */
+    private static function get_first_certificate_cmid(int $userid, int $courseid): ?int {
+        $modinfo = get_fast_modinfo($courseid, $userid);
+        foreach ($modinfo->get_instances_of("customcert") as $cm) {
+            if ($cm->uservisible) {
+                return (int) $cm->id;
+            }
+        }
+
+        return null;
+    }
 }
