@@ -62,8 +62,8 @@ $string['cachedef_block_chart_data_none'] = 'Cache data grafik tanpa data';
 $string['cachedef_ip_user_location'] = 'Cache lokasi pengguna berdasarkan IP';
 $string['cachedef_mustache_nosql'] = 'Cache data Mustache for NoSQL';
 $string['cachedef_mustache_sql'] = 'Cache data Mustache for SQL';
-$string['cap_manage_desc'] = 'Memungkinkan pengguna untuk membuat, mengedit, mengimpor, mengekspor, dan mengelola Kopere BI dashboard.';
-$string['cap_view_desc'] = 'Memungkinkan pengguna untuk melihat Kopere BI dashboard di dalam Moodle and Kopere Dashboard.';
+$string['cap_manage_desc'] = 'Memungkinkan pengguna untuk membuat, mengedit, mengimpor, mengekspor, dan mengelola Dashboard Detail dashboard.';
+$string['cap_view_desc'] = 'Memungkinkan pengguna untuk melihat Dashboard Detail dashboard di dalam Moodle and Kopere Dashboard.';
 $string['case_complete'] = 'Selesai';
 $string['case_incomplete'] = 'Belum lengkap';
 $string['case_never_accessed'] = 'Belum pernah diakses';
@@ -141,7 +141,7 @@ $string['loading'] = 'Memuat...';
 $string['menu_desc'] = 'Dashboard dan laporan yang dibuat dengan Kopere BI.';
 $string['module_count'] = 'Jumlah modul';
 $string['module_name'] = 'Nama modul';
-$string['modulename'] = 'Kopere BI';
+$string['modulename'] = 'Dashboard Details';
 $string['new_block'] = 'New block pada this page';
 $string['new_block_1'] = 'One block';
 $string['new_block_12'] = 'One plus two blocks';
@@ -170,7 +170,7 @@ $string['page_not_found'] = 'Page not found';
 $string['page_preview'] = 'Premelihat page';
 $string['page_title_edit'] = 'Edit this page’s title';
 $string['page_title_export'] = 'Export page';
-$string['pluginname'] = 'Kopere BI';
+$string['pluginname'] = 'Dashboard Details';
 $string['privacy:metadata:city_name'] = 'Nama kota tempat pengguna mengakses.';
 $string['privacy:metadata:client_name'] = 'Nama klien atau browser yang digunakan pengguna.';
 $string['privacy:metadata:client_type'] = 'Jenis klien, seperti browser atau aplikasi.';
@@ -905,9 +905,9 @@ $string['report_page_089_description'] = 'Menampilkan skor percobaan kuis, nilai
 $string['report_page_089_title'] = 'Skor kuis per percobaan';
 $string['report_page_090_description'] = 'Menampilkan data dan statistik terkait Diterima lencana.';
 $string['report_page_090_title'] = 'Diterima lencana';
-$string['report_page_091_description'] = 'Menggunakan data pelacakan Kopere BI untuk menampilkan distribusi akses kursus berdasarkan hari dalam minggu dan periode waktu.';
+$string['report_page_091_description'] = 'Menggunakan data pelacakan Dashboard Detail untuk menampilkan distribusi akses kursus berdasarkan hari dalam minggu dan periode waktu.';
 $string['report_page_091_title'] = 'Akses kursus berdasarkan hari dan periode';
-$string['report_page_092_description'] = 'Menggunakan data pelacakan Kopere BI untuk menampilkan distribusi akses kursus setiap peserta berdasarkan hari dalam minggu dan periode waktu.';
+$string['report_page_092_description'] = 'Menggunakan data pelacakan Dashboard Detail untuk menampilkan distribusi akses kursus setiap peserta berdasarkan hari dalam minggu dan periode waktu.';
 $string['report_page_092_title'] = 'Akses peserta berdasarkan hari dan periode';
 $string['report_page_093_description'] = 'Menampilkan data dan statistik terkait File penggunaan ringkasan berdasarkan kursus.';
 $string['report_page_093_title'] = 'File penggunaan ringkasan berdasarkan kursus';
@@ -988,13 +988,13 @@ $string['sql_replace_keys2_others'] = '<h4>Kunci pengganti</h4>
 <pre>SELECT \\\'<b>lang::postmessage::mod_forum</b>\\\' FROM mdl_forum</pre>
 <p>Kunjungi <a href="?classname=extra_langs&method=index" target="_blank">halaman string</a> untuk melihat semua string yang tersedia.</p>';
 $string['sql_replace_keys2_table'] = '<h4>Filter</h4>
-<p>The <code>:xxxx</code> parameter from the list below can be used to add customization to SQL queries in Moodle. When included in the SQL, Kopere BI automatically identifies this parameter and generates a corresponding filter in the plugin, allowing data personalization per student.</p>
+<p>The <code>:xxxx</code> parameter from the list below can be used to add customization to SQL queries in Moodle. When included in the SQL, Dashboard Detail automatically identifies this parameter and generates a corresponding filter in the plugin, allowing data personalization per student.</p>
 <ul>{$a->replace_keys}</ul>
 <blockquote>
     <p><b>Contoh:</b></p>
     <code>SELECT * FROM mdl_user WHERE id = :userid</code>
     <p>The <code>:userid</code> is a <b>named parameter</b> in the SQL query. It works as a <b>placeholder</b> that will be dynamically filled at the time the report is executed.</p>
-    <p>When Kopere BI identifies this parameter, it <b>automatically creates a filter</b> for the plugin. This way, the value of <code>userid</code> is defined by the user in the report, without the need to manually change the SQL.</p>
+    <p>When Dashboard Detail identifies this parameter, it <b>automatically creates a filter</b> for the plugin. This way, the value of <code>userid</code> is defined by the user in the report, without the need to manually change the SQL.</p>
     <p>In this way, the same query can be reused for different users, returning only the data corresponding to the selected ID, which makes the report more <b>flexible</b>, <b>secure</b>, and <b>reusable</b>.</p>
     <p>You can manage filter plugins by accessing: <a href="{$a->wwwroot}/local/kopere_bi/admin_plugins.php?subtype=bifilters" target="_blank">{$a->subplugintype_bifilters_title}</a></p>
 </blockquote>
@@ -1011,7 +1011,7 @@ $string['sql_replace_keys2_table'] = '<h4>Filter</h4>
 <p>Kunjungi <a href="?classname=extra_langs&method=index" target="_blank">halaman string</a> untuk melihat semua string yang tersedia.</p>';
 $string['sql_replace_keys_mdl'] = '<h4>Prefiks basis data</h4>
 <p>Anda selalu dapat menggunakan the <code>mdl_</code> meskipun basis data Anda menggunakan prefiks the <code>{$a}</code> prefix.
-        Kopere BI akan menangani penggantian ini.</p>';
+        Dashboard Detail akan menangani penggantian ini.</p>';
 $string['subplugintype_biblocks'] = 'Block plugin';
 $string['subplugintype_biblocks_plural'] = 'Blocks plugins';
 $string['subplugintype_biblocks_title'] = 'Kopere oleh - Blocks plugins';
@@ -1024,7 +1024,7 @@ $string['theme_palette_desc2'] = 'See semua themes here';
 $string['theme_palette_palette'] = 'Palette {$a}';
 $string['theme_palette_title'] = 'Color Palette';
 $string['timecompleted'] = 'Pendaftaran selesai';
-$string['title'] = 'Kopere BI';
+$string['title'] = 'Dashboard Details';
 $string['u_fullname'] = 'Siswa’s full nama';
 $string['u_id'] = 'Siswa ID';
 $string['u_idnumber'] = 'ID nomor';
