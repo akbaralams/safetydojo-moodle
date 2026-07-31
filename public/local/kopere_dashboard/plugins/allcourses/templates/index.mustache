@@ -40,7 +40,9 @@
                 "needspassword": false,
                 "reason": "",
                 "enrolkeyurl": "https://moodle.example.com/enrol/index.php?id=12",
-                "courseurl": "https://moodle.example.com/course/view.php?id=12"
+                "courseurl": "https://moodle.example.com/course/view.php?id=12",
+                "hascertificate": true,
+                "certificateurl": "https://moodle.example.com/mod/customcert/view.php?id=45"
             }
         ]
     }
@@ -68,71 +70,65 @@
 
 <div class="kopere_dashboard-card" style="margin-top: 16px;">
     {{#hascourses}}
-        <table class="table table-striped kopere_dashboard-table">
-            <thead>
-            <tr>
-                <th style="width: 96px;"><span class="visually-hidden">
-                    {{#str}}col_image, koperedashboard_allcourses{{/str}}</span></th>
-                <th>{{#str}}col_fullname, koperedashboard_allcourses{{/str}}</th>
-                <th style="width: 130px;">{{#str}}col_shortname, koperedashboard_allcourses{{/str}}</th>
-                <th style="width: 180px;">{{#str}}col_category, koperedashboard_allcourses{{/str}}</th>
-                <th style="width: 140px;">{{#str}}col_startdate, koperedashboard_allcourses{{/str}}</th>
-                <th style="width: 190px;">{{#str}}col_actions, koperedashboard_allcourses{{/str}}</th>
-            </tr>
-            </thead>
-            <tbody>
+        <div class="kopere_dashboard-coursegrid">
             {{#courses}}
-                <tr>
-                    <td>
-                        <img src="{{{imageurl}}}"
-                             alt=""
-                             class="rounded"
-                             style="width: 80px; height: 54px; object-fit: cover; display: block;">
-                    </td>
-                    <td>
-                        <strong>{{{fullname}}}</strong>
-                        {{#enrolled}}
-                            <span class="badge text-bg-secondary ms-1">
-                                {{#str}}status_enrolled, koperedashboard_allcourses{{/str}}</span>
-                        {{/enrolled}}
-                        <div class="text-muted small">{{{summary}}}</div>
-                    </td>
-                    <td>{{{shortname}}}</td>
-                    <td>{{{category}}}</td>
-                    <td>{{{startdate}}}</td>
-                    <td>
-                        {{#enrolled}}
-                            <a class="btn btn-secondary btn-sm" href="{{{courseurl}}}">
-                                {{#str}}action_open, koperedashboard_allcourses{{/str}}</a>
-                        {{/enrolled}}
-                        {{^enrolled}}
-                            {{#canenrol}}
-                                {{#needspassword}}
-                                    <a class="btn btn-primary btn-sm" href="{{{enrolkeyurl}}}">
-                                        {{#str}}action_enrol, koperedashboard_allcourses{{/str}}</a>
-                                    <div class="text-muted small mt-1">
-                                        {{#str}}enrol_needspassword, koperedashboard_allcourses{{/str}}
-                                    </div>
-                                {{/needspassword}}
-                                {{^needspassword}}
-                                    <form method="post" action="{{{enrolurl}}}">
-                                        <input type="hidden" name="sesskey" value="{{{sesskey}}}">
-                                        <input type="hidden" name="courseid" value="{{{id}}}">
-                                        <button type="submit" class="btn btn-primary btn-sm">
-                                            {{#str}}action_enrol, koperedashboard_allcourses{{/str}}
-                                        </button>
-                                    </form>
-                                {{/needspassword}}
-                            {{/canenrol}}
-                            {{^canenrol}}
-                                <span class="text-muted small">{{{reason}}}</span>
-                            {{/canenrol}}
-                        {{/enrolled}}
-                    </td>
-                </tr>
+                <div class="kopere_dashboard-coursecard">
+                    <div class="kopere_dashboard-coursecard-image">
+                        <img src="{{{imageurl}}}" alt="">
+                    </div>
+                    <div class="kopere_dashboard-coursecard-body">
+                        <div class="kopere_dashboard-coursecard-head">
+                            <div class="kopere_dashboard-coursecard-title">{{{fullname}}}</div>
+                            {{#enrolled}}
+                                <span class="kopere_dashboard-student-status">
+                                    {{#str}}status_enrolled, koperedashboard_allcourses{{/str}}</span>
+                            {{/enrolled}}
+                        </div>
+                        <div class="kopere_dashboard-coursecard-meta">
+                            {{{shortname}}} · {{{category}}} · {{{startdate}}}
+                        </div>
+                        <div class="kopere_dashboard-coursecard-summary">{{{summary}}}</div>
+
+                        <div class="kopere_dashboard-coursecard-actions">
+                            {{#enrolled}}
+                                <a class="btn btn-secondary btn-sm" href="{{{courseurl}}}">
+                                    {{#str}}action_open, koperedashboard_allcourses{{/str}}</a>
+                                {{#hascertificate}}
+                                    <a class="btn btn-outline-danger btn-sm" href="{{{certificateurl}}}">
+                                        <i class="fa fa-certificate me-1" aria-hidden="true"></i>
+                                        {{#str}}action_view_certificate, koperedashboard_allcourses{{/str}}</a>
+                                {{/hascertificate}}
+                            {{/enrolled}}
+                            {{^enrolled}}
+                                {{#canenrol}}
+                                    {{#needspassword}}
+                                        <div>
+                                            <a class="btn btn-primary btn-sm" href="{{{enrolkeyurl}}}">
+                                                {{#str}}action_enrol, koperedashboard_allcourses{{/str}}</a>
+                                            <div class="text-muted small mt-1">
+                                                {{#str}}enrol_needspassword, koperedashboard_allcourses{{/str}}
+                                            </div>
+                                        </div>
+                                    {{/needspassword}}
+                                    {{^needspassword}}
+                                        <form method="post" action="{{{enrolurl}}}">
+                                            <input type="hidden" name="sesskey" value="{{{sesskey}}}">
+                                            <input type="hidden" name="courseid" value="{{{id}}}">
+                                            <button type="submit" class="btn btn-primary btn-sm">
+                                                {{#str}}action_enrol, koperedashboard_allcourses{{/str}}
+                                            </button>
+                                        </form>
+                                    {{/needspassword}}
+                                {{/canenrol}}
+                                {{^canenrol}}
+                                    <span class="text-muted small">{{{reason}}}</span>
+                                {{/canenrol}}
+                            {{/enrolled}}
+                        </div>
+                    </div>
+                </div>
             {{/courses}}
-            </tbody>
-        </table>
+        </div>
     {{/hascourses}}
 
     {{^hascourses}}

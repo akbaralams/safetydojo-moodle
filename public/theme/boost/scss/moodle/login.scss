@@ -94,6 +94,19 @@ $login-input-bg: $gray-100 !default;
                 border-color: $input-focus-border-color;
                 box-shadow: $input-focus-box-shadow;
             }
+
+            // Browsers paint autofilled inputs with their own background (usually a yellow or
+            // blue tint) that ignores background-color, so an autofilled password field ends up
+            // a different colour to the toggle-sensitive button sitting right next to it. Force
+            // the same background back in via the oversized inset box-shadow trick.
+            &:-webkit-autofill,
+            &:-webkit-autofill:hover,
+            &:-webkit-autofill:focus {
+                -webkit-text-fill-color: $body-color;
+                -webkit-box-shadow: 0 0 0 1000px $login-input-bg inset;
+                box-shadow: 0 0 0 1000px $login-input-bg inset;
+                transition: background-color 600000s ease-in-out 0s;
+            }
         }
 
         .toggle-sensitive-wrapper .toggle-sensitive-btn {

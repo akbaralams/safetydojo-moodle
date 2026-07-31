@@ -553,6 +553,78 @@
     .kopere_dashboard-student-lastaccess {
         margin-top: 12px;
     }
+    .kopere_dashboard-coursegrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 16px;
+    }
+    .kopere_dashboard-coursecard {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        background: #ffffff;
+        border: 1px solid #d8dde6;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(31, 52, 97, 0.05);
+        transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+        &:hover {
+            transform: translateY(-1px);
+            border-color: #c9d7ef;
+            box-shadow: 0 12px 24px rgba(31, 52, 97, 0.08);
+        }
+    }
+    .kopere_dashboard-coursecard-image {
+        aspect-ratio: 16 / 9;
+        background: #eaf2ff;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    }
+    .kopere_dashboard-coursecard-body {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        padding: 16px;
+    }
+    .kopere_dashboard-coursecard-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 4px;
+    }
+    .kopere_dashboard-coursecard-title {
+        flex: 1 1 auto;
+        font-size: 1rem;
+        font-weight: 700;
+        color: #2c3650;
+    }
+    .kopere_dashboard-coursecard-meta {
+        margin-bottom: 8px;
+        color: #7d8797;
+        font-size: .82rem;
+    }
+    .kopere_dashboard-coursecard-summary {
+        display: -webkit-box;
+        overflow: hidden;
+        margin-bottom: 12px;
+        color: #7d8797;
+        font-size: .88rem;
+        line-height: 1.45;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+    .kopere_dashboard-coursecard-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 8px;
+        margin-top: auto;
+        padding-top: 4px;
+    }
     .kopere_dashboard-pagecontent {
         .form-control,
         select,
@@ -709,6 +781,9 @@
         }
         .kopere_dashboard-hero-left {
             align-items: flex-start;
+        }
+        .kopere_dashboard-coursegrid {
+            grid-template-columns: 1fr;
         }
     }
 
