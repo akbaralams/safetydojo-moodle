@@ -77,7 +77,23 @@ const renderSensitiveToggle = (sensitiveInput) => {
             sensitiveinput: sensitiveInput.outerHTML,
         }
     ).then((html) => {
-        sensitiveInput.outerHTML = html;
+        // Build the wrapper markup in a detached container instead of assigning it straight to
+        // sensitiveInput.outerHTML. Overwriting outerHTML destroys the live input node and
+        // replaces it with a brand new one parsed from static markup, which discards any value
+        // already set on it by the browser (or a password manager) via autofill. If autofill
+        // happens to race with this async render, the field is left looking empty and its
+        // toggle button missing.
+        const container = document.createElement('div');
+        container.innerHTML = html;
+        const wrapper = container.firstElementChild;
+        const placeholderInput = wrapper.querySelector(`#${CSS.escape(sensitiveInput.id)}`);
+
+        // Swap the wrapper into the input's place, then move the real, live input node into
+        // the wrapper so its current value and any autofill state are preserved rather than
+        // being recreated from scratch.
+        sensitiveInput.replaceWith(wrapper);
+        placeholderInput.replaceWith(sensitiveInput);
+
         // Dispatch the event indicating the sensitive input has changed.
         notifyFieldStructureChanged(sensitiveInput.id);
         return;
