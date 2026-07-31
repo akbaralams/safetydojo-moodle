@@ -140,8 +140,7 @@ if (!$downloadown && !$downloadissue) {
     if ($issues && !$canmanage) {
         // Get the most recent issue (there should only be one).
         $issue = reset($issues);
-        $issuestring = get_string('receiveddate', 'customcert') . ': ' . userdate($issue->timecreated);
-        $issuehtml = $OUTPUT->box($issuestring);
+        $issuehtml = get_string('receiveddate', 'customcert') . ': ' . userdate($issue->timecreated);
     }
 
     // Create the button to download the customcert.
@@ -173,13 +172,24 @@ if (!$downloadown && !$downloadissue) {
 
     // Output all the page data.
     echo $OUTPUT->header();
-    echo $issuehtml;
-    echo $downloadbutton;
-    echo $downloadallbutton;
     if (isset($reporttable)) {
+        echo $issuehtml ? $OUTPUT->box($issuehtml) : '';
+        echo $downloadbutton;
+        echo $downloadallbutton;
         echo $OUTPUT->heading(get_string('listofissues', 'customcert', $numissues), 3);
         groups_print_activity_menu($cm, $pageurl);
         echo $reporttable->out($perpage, false);
+    } else {
+        // Plain student-facing view: present the certificate status as a card instead of a
+        // bare box and button floating on an otherwise empty page.
+        echo html_writer::start_div('customcert-view-card');
+        echo html_writer::tag('i', '', ['class' => 'fa fa-certificate customcert-view-icon', 'aria-hidden' => 'true']);
+        echo $OUTPUT->heading(format_string($customcert->name), 3, 'customcert-view-title');
+        if ($issuehtml) {
+            echo html_writer::div($issuehtml, 'customcert-view-issued');
+        }
+        echo html_writer::div($downloadbutton . $downloadallbutton, 'customcert-view-actions');
+        echo html_writer::end_div();
     }
     echo $OUTPUT->footer($course);
     exit();
