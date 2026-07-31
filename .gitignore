@@ -1,5 +1,6 @@
 # Moodle configuration
 /config.php
+/public/config.php
 
 # Composer
 /vendor/
